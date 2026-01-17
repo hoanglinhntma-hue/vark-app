@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả VARK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js cho biểu đồ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .results-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .dominant-styles {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .style-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .badge-V { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .badge-A { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .badge-R { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .badge-K { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        
+        .detailed-scores {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .score-item:last-child {
+            border-bottom: none;
+        }
+        
+        .score-bar-container {
+            flex: 1;
+            margin: 0 20px;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .score-bar {
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+        .bar-V { background: #3498db; }
+        .bar-A { background: #9b59b6; }
+        .bar-R { background: #e74c3c; }
+        .bar-K { background: #2ecc71; }
+        
+        .advice-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .advice-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid;
+        }
+        
+        .advice-V { border-left-color: #3498db; }
+        .advice-A { border-left-color: #9b59b6; }
+        .advice-R { border-left-color: #e74c3c; }
+        .advice-K { border-left-color: #2ecc71; }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .result-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-chart-bar"></i> Kết quả Trắc nghiệm VARK</h1>
+            <p>Khám phá phong cách học tập của bạn</p>
+        </header>
+
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="quiz.html"><i class="fas fa-question-circle"></i> Làm trắc nghiệm</a>
+            <a href="history.html"><i class="fas fa-history"></i> Lịch sử</a>
+            <a href="tips.html"><i class="fas fa-lightbulb"></i> Gợi ý học tập</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+        </nav>
+
+        <main class="results-container">
+            <div class="result-header">
+                <h2 id="resultDate">Kết quả ngày ...</h2>
+                <p id="resultSummary">Đang tải kết quả...</p>
+            </div>
+            
+            <div class="result-summary">
+                <div class="chart-container">
+                    <canvas id="varkChart"></canvas>
+                </div>
+                
+                <div class="dominant-styles">
+                    <h3><i class="fas fa-star"></i> Phong cách học chính của bạn</h3>
+                    <div id="dominantContainer">
+                        <!-- Các badge phong cách sẽ được thêm ở đây -->
+                    </div>
+                    
+                    <div class="dominant-description" id="dominantDescription">
+                        <!-- Mô tả sẽ được thêm ở đây -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detailed-scores">
+                <h3><i class="fas fa-list-ol"></i> Điểm số chi tiết</h3>
+                <div id="scoresDetail">
+                    <!-- Điểm số sẽ được thêm ở đây -->
+                </div>
+            </div>
+            
+            <div class="advice-section">
+                <h3><i class="fas fa-lightbulb"></i> Lời khuyên học tập</h3>
+                <div id="adviceContainer">
+                    <!-- Lời khuyên sẽ được thêm ở đây -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="quiz.html" class="btn-primary">
+                    <i class="fas fa-redo"></i> Làm lại trắc nghiệm
+                </a>
+                <a href="tips.html" class="btn-secondary">
+                    <i class="fas fa-book-open"></i> Xem gợi ý chi tiết
+                </a>
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-home"></i> Về trang chủ
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Kết quả này giúp bạn hiểu rõ hơn về cách tiếp thu kiến thức hiệu quả nhất</p>
+        </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/results.js"></script>
+</body>
+</html>

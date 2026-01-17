@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VARK - Trắc nghiệm phong cách học</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> VARK Learning Styles</h1>
+            <p>Khám phá phong cách học tập của bạn</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="quiz.html"><i class="fas fa-question-circle"></i> Làm trắc nghiệm</a>
+            <a href="history.html"><i class="fas fa-history"></i> Lịch sử</a>
+            <a href="tips.html"><i class="fas fa-lightbulb"></i> Gợi ý học tập</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="welcome-section">
+                <h2>Chào mừng đến với Trắc nghiệm VARK!</h2>
+                <div class="intro-card">
+                    <p>Phương pháp VARK giúp bạn xác định phong cách học tập thông qua 4 nhóm:</p>
+                    
+                    <div class="vark-types">
+                        <div class="type-card visual">
+                            <i class="fas fa-eye"></i>
+                            <h3>Visual (Hình ảnh)</h3>
+                            <p>Học qua hình ảnh, biểu đồ, màu sắc</p>
+                        </div>
+                        
+                        <div class="type-card aural">
+                            <i class="fas fa-assistive-listening-systems"></i>
+                            <h3>Aural (Thính giác)</h3>
+                            <p>Học qua nghe, thảo luận, giảng giải</p>
+                        </div>
+                        
+                        <div class="type-card readwrite">
+                            <i class="fas fa-book"></i>
+                            <h3>Read/Write (Đọc/Viết)</h3>
+                            <p>Học qua đọc tài liệu, ghi chép</p>
+                        </div>
+                        
+                        <div class="type-card kinesthetic">
+                            <i class="fas fa-hands"></i>
+                            <h3>Kinesthetic (Vận động)</h3>
+                            <p>Học qua thực hành, trải nghiệm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <a href="quiz.html" class="btn-primary">
+                        <i class="fas fa-play-circle"></i> Bắt đầu trắc nghiệm
+                    </a>
+                    
+                    <div class="last-result" id="lastResult">
+                        <!-- Hiển thị kết quả gần nhất -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h3><i class="fas fa-chart-bar"></i> Thống kê của bạn</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="quizCount">0</span>
+                        <span class="stat-label">Lần đã làm</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="dominantStyle">-</span>
+                        <span class="stat-label">Phong cách chính</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="lastDate">-</span>
+                        <span class="stat-label">Lần cuối</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Ứng dụng phát triển bởi bạn - Dựa trên mô hình VARK</p>
+            <p class="copyright">© 2023 VARK Learning Styles App</p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/storage.js"></script>
+</body>
+</html>

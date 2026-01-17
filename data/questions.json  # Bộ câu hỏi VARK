@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "text": "Khi học về một loài động vật mới, bạn thích:",
+        "options": [
+            {"text": "Xem hình ảnh hoặc video về nó", "type": "V"},
+            {"text": "Nghe thuyết trình hoặc âm thanh của nó", "type": "A"},
+            {"text": "Đọc mô tả và ghi chép về nó", "type": "R"},
+            {"text": "Đến vườn thú để quan sát trực tiếp", "type": "K"}
+        ]
+    },
+    {
+        "id": 2,
+        "text": "Khi lắp ráp đồ nội thất, bạn thường:",
+        "options": [
+            {"text": "Xem kỹ hình ảnh hướng dẫn", "type": "V"},
+            {"text": "Gọi điện hỏi người khác", "type": "A"},
+            {"text": "Đọc kỹ hướng dẫn sử dụng", "type": "R"},
+            {"text": "Thử lắp trực tiếp, sai thì sửa", "type": "K"}
+        ]
+    },
+    {
+        "id": 3,
+        "text": "Khi học từ vựng ngoại ngữ, bạn thích:",
+        "options": [
+            {"text": "Sử dụng thẻ học với hình ảnh", "type": "V"},
+            {"text": "Nghe phát âm và lặp lại", "type": "A"},
+            {"text": "Viết đi viết lại nhiều lần", "type": "R"},
+            {"text": "Sử dụng trong tình huống thực tế", "type": "K"}
+        ]
+    },
+    {
+        "id": 4,
+        "text": "Trong một buổi hội thảo, bạn thường:",
+        "options": [
+            {"text": "Tập trung vào slide và biểu đồ", "type": "V"},
+            {"text": "Lắng nghe diễn giả nói", "type": "A"},
+            {"text": "Ghi chép chi tiết", "type": "R"},
+            {"text": "Tham gia thực hành nếu có", "type": "K"}
+        ]
+    },
+    {
+        "id": 5,
+        "text": "Khi ghi nhớ số điện thoại, bạn:",
+        "options": [
+            {"text": "Hình dung con số trong đầu", "type": "V"},
+            {"text": "Đọc thành tiếng nhiều lần", "type": "A"},
+            {"text": "Viết ra giấy nhiều lần", "type": "R"},
+            {"text": "Bấm số trên điện thoại nhiều lần", "type": "K"}
+        ]
+    },
+    {
+        "id": 6,
+        "text": "Khi giải thích đường đi cho người khác, bạn:",
+        "options": [
+            {"text": "Vẽ bản đồ hoặc sơ đồ", "type": "V"},
+            {"text": "Giải thích bằng lời chi tiết", "type": "A"},
+            {"text": "Viết ra tên đường và số nhà", "type": "R"},
+            {"text": "Dẫn họ đi một đoạn", "type": "K"}
+        ]
+    }
+]

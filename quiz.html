@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm VARK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .question-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .question-number {
+            color: #3498db;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .option:hover {
+            border-color: #3498db;
+            background: #f8fafc;
+        }
+        
+        .option.selected {
+            border-color: #1abc9c;
+            background: #e8f6f3;
+        }
+        
+        .option-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .icon-V { background: #3498db; }
+        .icon-A { background: #9b59b6; }
+        .icon-R { background: #e74c3c; }
+        .icon-K { background: #2ecc71; }
+        
+        .progress-bar {
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1abc9c, #3498db);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-question-circle"></i> Trắc nghiệm VARK</h1>
+            <p>Hãy chọn câu trả lời phù hợp nhất với bạn</p>
+        </header>
+
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="quiz.html" class="active"><i class="fas fa-question-circle"></i> Làm trắc nghiệm</a>
+            <a href="history.html"><i class="fas fa-history"></i> Lịch sử</a>
+            <a href="tips.html"><i class="fas fa-lightbulb"></i> Gợi ý học tập</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+        </nav>
+
+        <main class="quiz-container">
+            <!-- Thanh tiến độ -->
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            
+            <!-- Câu hỏi sẽ được tạo động bằng JavaScript -->
+            <div id="questionsContainer"></div>
+            
+            <!-- Nút điều hướng -->
+            <div class="navigation" id="navigation">
+                <button class="btn-secondary" id="prevBtn">
+                    <i class="fas fa-arrow-left"></i> Câu trước
+                </button>
+                
+                <button class="btn-primary" id="nextBtn">
+                    Câu tiếp theo <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <button class="btn-primary" id="submitBtn" style="display: none;">
+                    <i class="fas fa-paper-plane"></i> Xem kết quả
+                </button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Trắc nghiệm VARK - Mỗi câu hỏi giúp hiểu rõ hơn về cách bạn học tốt nhất</p>
+        </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

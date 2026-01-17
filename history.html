@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử kết quả</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .history-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .history-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .history-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid;
+        }
+        
+        .history-item-V { border-left-color: #3498db; }
+        .history-item-A { border-left-color: #9b59b6; }
+        .history-item-R { border-left-color: #e74c3c; }
+        .history-item-K { border-left-color: #2ecc71; }
+        
+        .history-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-view { background: #3498db; color: white; }
+        .btn-delete { background: #e74c3c; color: white; }
+        
+        .clear-all {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .empty-history {
+            text-align: center;
+            padding: 50px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-history i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-history"></i> Lịch sử kết quả</h1>
+            <p>Theo dõi sự thay đổi phong cách học của bạn</p>
+        </header>
+
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="quiz.html"><i class="fas fa-question-circle"></i> Làm trắc nghiệm</a>
+            <a href="history.html" class="active"><i class="fas fa-history"></i> Lịch sử</a>
+            <a href="tips.html"><i class="fas fa-lightbulb"></i> Gợi ý học tập</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+        </nav>
+
+        <main class="history-container">
+            <h2><i class="fas fa-list"></i> Tất cả kết quả</h2>
+            <p id="historyCount">Bạn đã làm trắc nghiệm 0 lần</p>
+            
+            <div class="history-list" id="historyList">
+                <!-- Lịch sử sẽ được thêm động ở đây -->
+            </div>
+            
+            <div class="clear-all" id="clearAllSection" style="display: none;">
+                <button class="btn-secondary" id="clearAllBtn">
+                    <i class="fas fa-trash-alt"></i> Xóa tất cả lịch sử
+                </button>
+                <p class="warning-text"><small><i class="fas fa-exclamation-triangle"></i> Hành động này không thể hoàn tác</small></p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Theo dõi lịch sử giúp bạn nhận ra sự thay đổi trong cách học của mình</p>
+        </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/history.js"></script>
+</body>
+</html>
