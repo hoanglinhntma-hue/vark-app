@@ -6,6 +6,313 @@
     <title>VARK - Trắc nghiệm phong cách học</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS bổ sung cho index.html */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1abc9c, #3498db);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .navbar a {
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #2c3e50;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .navbar a:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .navbar a.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .welcome-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .welcome-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .intro-card {
+            margin-bottom: 40px;
+        }
+        
+        .intro-card > p {
+            font-size: 1.2rem;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .vark-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .type-card {
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+        }
+        
+        .type-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .type-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .type-card p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .visual {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .aural {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .readwrite {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .kinesthetic {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.3);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(26, 188, 156, 0.4);
+        }
+        
+        .last-result {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .last-result h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stats-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .stats-section h3 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 5px solid #3498db;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        
+        .copyright {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .navbar a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .welcome-section, .stats-section {
+                padding: 25px;
+            }
+            
+            .vark-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-primary {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -60,11 +367,13 @@
                 
                 <div class="quick-actions">
                     <a href="quiz.html" class="btn-primary">
-                        <i class="fas fa-play-circle"></i> Bắt đầu trắc nghiệm
+                        <i class="fas fa-play-circle"></i> Bắt đầu trắc nghiệm (16 câu)
                     </a>
                     
                     <div class="last-result" id="lastResult">
                         <!-- Hiển thị kết quả gần nhất -->
+                        <h4><i class="fas fa-history"></i> Chưa có kết quả nào</h4>
+                        <p>Hoàn thành bài trắc nghiệm để xem kết quả tại đây!</p>
                     </div>
                 </div>
             </div>
@@ -91,11 +400,93 @@
         <!-- Footer -->
         <footer class="footer">
             <p>Ứng dụng phát triển bởi bạn - Dựa trên mô hình VARK</p>
-            <p class="copyright">© 2023 VARK Learning Styles App</p>
+            <p class="copyright">© 2024 VARK Learning Styles App</p>
         </footer>
     </div>
 
-    <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
+    <script>
+        // Hiển thị thống kê từ localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+        });
+        
+        function updateStats() {
+            // Lấy dữ liệu từ Storage
+            const results = Storage.getResults();
+            const latestResult = Storage.getLatestResult();
+            const quizCount = results.length;
+            
+            // Cập nhật số lần đã làm
+            document.getElementById('quizCount').textContent = quizCount;
+            
+            // Cập nhật phong cách chính và ngày cuối
+            if (latestResult) {
+                const dominant = latestResult.dominant || [];
+                const lastDate = latestResult.date || 'Mới đây';
+                
+                // Phong cách chính
+                if (dominant.length === 1) {
+                    const styleCode = dominant[0];
+                    const styleNames = {
+                        'V': 'Visual',
+                        'A': 'Aural',
+                        'R': 'Read/Write',
+                        'K': 'Kinesthetic'
+                    };
+                    document.getElementById('dominantStyle').textContent = styleNames[styleCode] || styleCode;
+                } else if (dominant.length > 1) {
+                    document.getElementById('dominantStyle').textContent = 'Đa phong cách';
+                } else {
+                    document.getElementById('dominantStyle').textContent = '-';
+                }
+                
+                // Ngày cuối
+                document.getElementById('lastDate').textContent = lastDate;
+                
+                // Hiển thị kết quả gần nhất
+                displayLatestResult(latestResult);
+            } else {
+                document.getElementById('dominantStyle').textContent = '-';
+                document.getElementById('lastDate').textContent = '-';
+            }
+        }
+        
+        function displayLatestResult(result) {
+            const lastResultDiv = document.getElementById('lastResult');
+            if (!lastResultDiv) return;
+            
+            const styles = result.dominant || [];
+            const styleNames = styles.map(s => {
+                const names = {
+                    'V': 'Visual (Hình ảnh)',
+                    'A': 'Aural (Thính giác)',
+                    'R': 'Read/Write (Đọc/Viết)',
+                    'K': 'Kinesthetic (Vận động)'
+                };
+                return names[s] || s;
+            });
+            
+            let resultHTML = `
+                <h4><i class="fas fa-history"></i> Kết quả gần nhất</h4>
+                <p><strong>Ngày:</strong> ${result.date || 'Không rõ'}</p>
+                <p><strong>Phong cách chính:</strong> ${styleNames.join(', ')}</p>
+                <p><strong>Điểm số:</strong> 
+                V:${result.scores?.V || 0} 
+                A:${result.scores?.A || 0} 
+                R:${result.scores?.R || 0} 
+                K:${result.scores?.K || 0}
+                </p>
+                <a href="results.html?id=${result.id}" class="btn-primary" style="padding: 10px 20px; font-size: 1rem; margin-top: 10px;">
+                    <i class="fas fa-external-link-alt"></i> Xem chi tiết
+                </a>
+            `;
+            
+            lastResultDiv.innerHTML = resultHTML;
+        }
+        
+        // Cập nhật thống kê mỗi khi trang được focus lại
+        window.addEventListener('focus', updateStats);
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cài đặt ứng dụng</title>
+    <title>Cài đặt ứng dụng VARK</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -21,11 +21,20 @@
             margin-bottom: 25px;
         }
         
+        .settings-group h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+        
         .setting-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 18px 0;
             border-bottom: 1px solid #eee;
         }
         
@@ -36,13 +45,17 @@
         .setting-info h4 {
             margin-bottom: 5px;
             color: #2c3e50;
+            font-size: 1.1rem;
         }
         
         .setting-info p {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            max-width: 400px;
+            line-height: 1.5;
         }
         
+        /* Toggle Switch */
         .switch {
             position: relative;
             display: inline-block;
@@ -88,59 +101,254 @@
             transform: translateX(26px);
         }
         
+        /* Select Dropdown */
         select {
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 8px;
             border: 1px solid #ddd;
             background: white;
             font-size: 1rem;
+            min-width: 150px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
+        select:hover {
+            border-color: #1abc9c;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #1abc9c;
+            box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+        }
+        
+        /* Danger Zone */
         .danger-zone {
             border: 2px solid #e74c3c;
-            background: #fff5f5;
+            background: linear-gradient(135deg, #fff5f5, #ffeaea);
+            position: relative;
+        }
+        
+        .danger-zone::before {
+            content: '⚠️';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
         
         .danger-zone .setting-item {
             border-bottom-color: #ffcccc;
         }
         
-        .btn-danger {
-            background: #e74c3c;
-            color: white;
+        /* Buttons */
+        .btn-primary, .btn-secondary, .btn-danger {
             padding: 12px 25px;
-            border: none;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 1rem;
-            display: flex;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #16a085, #149174);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
         }
         
         .btn-danger:hover {
-            background: #c0392b;
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
         }
         
+        /* Save Button */
         .save-button {
             text-align: center;
-            margin-top: 30px;
+            margin: 40px 0;
         }
         
+        .save-button .btn-primary {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+        }
+        
+        /* Version Info */
         .version-info {
             text-align: center;
             color: #7f8c8d;
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 40px;
+            padding-top: 25px;
             border-top: 1px solid #eee;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .version-info p {
+            margin: 8px 0;
+        }
+        
+        .app-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            min-width: 150px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .info-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        /* File Input Styling */
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        #importFile {
+            display: none;
+        }
+        
+        .file-name {
+            margin-left: 15px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-style: italic;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* Toast Message */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .toast.error {
+            background: #e74c3c;
+        }
+        
+        .toast.warning {
+            background: #f39c12;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 15px;
+            }
+            
+            .settings-group {
+                padding: 20px;
+            }
+            
+            .setting-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .setting-info p {
+                max-width: 100%;
+            }
+            
+            select {
+                width: 100%;
+            }
+            
+            .app-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-item {
+                width: 100%;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1><i class="fas fa-cog"></i> Cài đặt ứng dụng</h1>
+            <h1><i class="fas fa-cog"></i> Cài đặt ứng dụng VARK</h1>
             <p>Tùy chỉnh trải nghiệm học tập của bạn</p>
         </header>
 
@@ -155,12 +363,12 @@
         <main class="settings-container">
             <!-- Cài đặt hiển thị -->
             <div class="settings-group">
-                <h3><i class="fas fa-palette"></i> Giao diện</h3>
+                <h3><i class="fas fa-palette"></i> Giao diện & Hiển thị</h3>
                 
                 <div class="setting-item">
                     <div class="setting-info">
                         <h4>Cỡ chữ</h4>
-                        <p>Điều chỉnh kích thước chữ cho dễ đọc</p>
+                        <p>Điều chỉnh kích thước chữ cho phù hợp với thị lực của bạn</p>
                     </div>
                     <select id="fontSize">
                         <option value="small">Nhỏ</option>
@@ -172,22 +380,72 @@
                 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <h4>Chế độ tối</h4>
-                        <p>Bật chế độ tối để bảo vệ mắt</p>
+                        <h4>Chủ đề giao diện</h4>
+                        <p>Chọn giữa chế độ sáng hoặc tối</p>
+                    </div>
+                    <select id="theme">
+                        <option value="light">Sáng</option>
+                        <option value="dark">Tối</option>
+                        <option value="auto">Tự động (theo hệ thống)</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Ngôn ngữ</h4>
+                        <p>Ngôn ngữ hiển thị của ứng dụng</p>
+                    </div>
+                    <select id="language">
+                        <option value="vi">Tiếng Việt</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Rung khi tương tác</h4>
+                        <p>Rung nhẹ khi chọn đáp án (chỉ trên mobile)</p>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="darkMode">
+                        <input type="checkbox" id="vibration">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Cài đặt thông báo -->
+            <div class="settings-group">
+                <h3><i class="fas fa-bell"></i> Thông báo & Nhắc nhở</h3>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Thông báo nhắc nhở</h4>
+                        <p>Nhận thông báo làm trắc nghiệm định kỳ</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="notifications" checked>
                         <span class="slider"></span>
                     </label>
                 </div>
                 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <h4>Thông báo</h4>
-                        <p>Nhắc nhở làm trắc nghiệm định kỳ</p>
+                        <h4>Lưu lịch sử tự động</h4>
+                        <p>Tự động lưu kết quả sau khi hoàn thành trắc nghiệm</p>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="notifications" checked>
+                        <input type="checkbox" id="autoSave" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Hiển thị xác nhận</h4>
+                        <p>Hiển thị hộp thoại xác nhận trước khi xóa</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="showConfirmations" checked>
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -200,53 +458,380 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <h4>Xuất dữ liệu</h4>
-                        <p>Tải về tất cả kết quả của bạn (JSON)</p>
+                        <p>Tải về tất cả kết quả và cài đặt của bạn (định dạng JSON)</p>
                     </div>
-                    <button class="btn-secondary" id="exportData">
-                        <i class="fas fa-download"></i> Xuất
-                    </button>
+                    <div>
+                        <button class="btn-secondary" id="exportData">
+                            <i class="fas fa-download"></i> Xuất dữ liệu
+                        </button>
+                        <button class="btn-secondary" id="exportPDF" style="margin-left: 10px;">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="setting-item">
                     <div class="setting-info">
                         <h4>Nhập dữ liệu</h4>
-                        <p>Khôi phục dữ liệu từ file đã lưu</p>
+                        <p>Khôi phục dữ liệu từ file đã lưu trước đó</p>
                     </div>
-                    <input type="file" id="importFile" accept=".json" style="display: none;">
-                    <button class="btn-secondary" id="importBtn">
-                        <i class="fas fa-upload"></i> Chọn file
+                    <div class="file-input-wrapper">
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                        <button class="btn-secondary" id="importBtn">
+                            <i class="fas fa-upload"></i> Chọn file JSON
+                        </button>
+                        <span id="fileName" class="file-name"></span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Xóa lịch sử trắc nghiệm</h4>
+                        <p>Xóa toàn bộ lịch sử làm bài của bạn</p>
+                    </div>
+                    <button class="btn-danger" id="clearHistory">
+                        <i class="fas fa-trash-alt"></i> Xóa lịch sử
                     </button>
                 </div>
                 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <h4>Xóa tất cả dữ liệu</h4>
-                        <p>Xóa toàn bộ lịch sử và cài đặt</p>
+                        <h4>Đặt lại toàn bộ ứng dụng</h4>
+                        <p>Xóa tất cả dữ liệu và khôi phục cài đặt gốc</p>
                     </div>
                     <button class="btn-danger" id="resetAll">
-                        <i class="fas fa-trash-alt"></i> Xóa tất cả
+                        <i class="fas fa-bomb"></i> Đặt lại tất cả
                     </button>
                 </div>
             </div>
             
+            <!-- Thông tin ứng dụng -->
+            <div class="settings-group">
+                <h3><i class="fas fa-info-circle"></i> Thông tin ứng dụng</h3>
+                
+                <div class="app-info">
+                    <div class="info-item">
+                        <span class="info-value" id="resultCount">0</span>
+                        <span class="info-label">Kết quả đã lưu</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-value" id="storageUsage">0 KB</span>
+                        <span class="info-label">Dung lượng lưu trữ</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-value" id="appVersion">1.1.0</span>
+                        <span class="info-label">Phiên bản</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-value" id="questionsCount">16</span>
+                        <span class="info-label">Câu hỏi</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nút lưu -->
             <div class="save-button">
                 <button class="btn-primary" id="saveSettings">
-                    <i class="fas fa-save"></i> Lưu cài đặt
+                    <i class="fas fa-save"></i> Lưu tất cả cài đặt
                 </button>
             </div>
             
+            <!-- Thông tin phiên bản -->
             <div class="version-info">
-                <p>Phiên bản: <strong>1.0.0</strong></p>
-                <p>Ứng dụng Trắc nghiệm VARK © 2023</p>
+                <p><strong>Ứng dụng Trắc nghiệm Phong cách Học tập VARK</strong></p>
+                <p>Phiên bản: <span id="versionDisplay">1.1.0</span> | Phát triển bởi bạn</p>
+                <p>© 2024 VARK Learning Styles App. Tất cả các quyền được bảo lưu.</p>
             </div>
         </main>
 
         <footer class="footer">
-            <p>Tùy chỉnh ứng dụng để có trải nghiệm học tập tốt nhất</p>
+            <p>Mọi thay đổi sẽ được áp dụng ngay lập tức. Dữ liệu của bạn được lưu trữ cục bộ trên trình duyệt.</p>
         </footer>
     </div>
 
+    <!-- Toast Message -->
+    <div id="toast" class="toast"></div>
+
     <script src="js/storage.js"></script>
-    <script src="js/settings.js"></script>
+    <script>
+        // Khởi tạo và quản lý cài đặt
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load cài đặt hiện tại
+            loadSettings();
+            updateAppInfo();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+        
+        function loadSettings() {
+            const settings = Storage.getSettings();
+            
+            // Đặt giá trị cho các control
+            document.getElementById('fontSize').value = settings.fontSize || 'medium';
+            document.getElementById('theme').value = settings.theme || 'light';
+            document.getElementById('language').value = settings.language || 'vi';
+            document.getElementById('vibration').checked = settings.vibration || false;
+            document.getElementById('notifications').checked = settings.notifications !== false;
+            document.getElementById('autoSave').checked = settings.saveHistory !== false;
+            document.getElementById('showConfirmations').checked = settings.showConfirmations !== false;
+            
+            // Áp dụng cài đặt giao diện ngay
+            applyUISettings(settings);
+        }
+        
+        function applyUISettings(settings) {
+            // Áp dụng cỡ chữ
+            document.documentElement.style.fontSize = {
+                'small': '14px',
+                'medium': '16px',
+                'large': '18px',
+                'xlarge': '20px'
+            }[settings.fontSize] || '16px';
+            
+            // Áp dụng theme
+            if (settings.theme === 'dark' || (settings.theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+        
+        function setupEventListeners() {
+            // Lưu cài đặt
+            document.getElementById('saveSettings').addEventListener('click', saveAllSettings);
+            
+            // Xuất dữ liệu
+            document.getElementById('exportData').addEventListener('click', exportData);
+            document.getElementById('exportPDF').addEventListener('click', exportPDF);
+            
+            // Nhập dữ liệu
+            document.getElementById('importBtn').addEventListener('click', () => {
+                document.getElementById('importFile').click();
+            });
+            
+            document.getElementById('importFile').addEventListener('change', importData);
+            
+            // Xóa dữ liệu
+            document.getElementById('clearHistory').addEventListener('click', clearHistory);
+            document.getElementById('resetAll').addEventListener('click', resetAll);
+            
+            // Áp dụng cài đặt ngay khi thay đổi
+            document.getElementById('fontSize').addEventListener('change', applyFontSize);
+            document.getElementById('theme').addEventListener('change', applyTheme);
+        }
+        
+        function saveAllSettings() {
+            const settings = {
+                fontSize: document.getElementById('fontSize').value,
+                theme: document.getElementById('theme').value,
+                language: document.getElementById('language').value,
+                vibration: document.getElementById('vibration').checked,
+                notifications: document.getElementById('notifications').checked,
+                saveHistory: document.getElementById('autoSave').checked,
+                showConfirmations: document.getElementById('showConfirmations').checked
+            };
+            
+            Storage.saveSettings(settings);
+            showToast('Đã lưu cài đặt thành công!', 'success');
+        }
+        
+        function applyFontSize() {
+            const fontSize = document.getElementById('fontSize').value;
+            const sizeMap = {
+                'small': '14px',
+                'medium': '16px',
+                'large': '18px',
+                'xlarge': '20px'
+            };
+            document.documentElement.style.fontSize = sizeMap[fontSize] || '16px';
+        }
+        
+        function applyTheme() {
+            const theme = document.getElementById('theme').value;
+            if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+        
+        function exportData() {
+            const data = {
+                results: Storage.getResults(),
+                settings: Storage.getSettings(),
+                exportedAt: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vark-backup-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('Đã xuất dữ liệu thành công!', 'success');
+        }
+        
+        function exportPDF() {
+            showToast('Tính năng xuất PDF đang được phát triển', 'info');
+        }
+        
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const fileName = document.getElementById('fileName');
+            fileName.textContent = file.name;
+            
+            if (!confirm(`Bạn có chắc muốn nhập dữ liệu từ file "${file.name}"? Dữ liệu hiện tại có thể bị ghi đè.`)) {
+                fileName.textContent = '';
+                event.target.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validate data structure
+                    if (!data.results || !Array.isArray(data.results)) {
+                        throw new Error('File không hợp lệ: thiếu dữ liệu kết quả');
+                    }
+                    
+                    // Backup current data
+                    const currentResults = Storage.getResults();
+                    const currentSettings = Storage.getSettings();
+                    
+                    // Clear and import new data
+                    localStorage.setItem('vark_results', JSON.stringify(data.results));
+                    
+                    if (data.settings) {
+                        localStorage.setItem('vark_settings', JSON.stringify(data.settings));
+                    }
+                    
+                    showToast(`Đã nhập thành công ${data.results.length} kết quả!`, 'success');
+                    updateAppInfo();
+                    
+                    // Reset file input
+                    event.target.value = '';
+                    fileName.textContent = '';
+                    
+                } catch (error) {
+                    showToast(`Lỗi khi nhập dữ liệu: ${error.message}`, 'error');
+                    console.error('Import error:', error);
+                }
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        function clearHistory() {
+            if (!confirm('Bạn có chắc muốn xóa TOÀN BỘ lịch sử trắc nghiệm? Hành động này không thể hoàn tác.')) {
+                return;
+            }
+            
+            Storage.clearAllResults();
+            showToast('Đã xóa toàn bộ lịch sử!', 'success');
+            updateAppInfo();
+        }
+        
+        function resetAll() {
+            if (!confirm('CẢNH BÁO: Bạn sắp xóa TẤT CẢ dữ liệu và khôi phục cài đặt gốc. Ứng dụng sẽ như mới cài đặt. Tiếp tục?')) {
+                return;
+            }
+            
+            // Clear all VARK-related data
+            localStorage.removeItem('vark_results');
+            localStorage.removeItem('vark_settings');
+            localStorage.removeItem('vark_questions_cache');
+            
+            showToast('Đã đặt lại toàn bộ ứng dụng!', 'success');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        }
+        
+        function updateAppInfo() {
+            const results = Storage.getResults();
+            const storageInfo = Storage.getStorageInfo();
+            
+            document.getElementById('resultCount').textContent = results.length;
+            document.getElementById('storageUsage').textContent = storageInfo ? `${storageInfo.totalKB} KB` : 'N/A';
+            
+            // Update other stats
+            document.getElementById('questionsCount').textContent = '16';
+        }
+        
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Dark theme CSS (tạm thời)
+        const darkThemeCSS = `
+            <style>
+                .dark-theme {
+                    background: #1a1a1a;
+                    color: #f0f0f0;
+                }
+                
+                .dark-theme .header {
+                    background: linear-gradient(135deg, #0d5d4c, #1a5276);
+                }
+                
+                .dark-theme .settings-group {
+                    background: #2c3e50;
+                    color: #f0f0f0;
+                }
+                
+                .dark-theme .setting-info h4 {
+                    color: #f0f0f0;
+                }
+                
+                .dark-theme .setting-info p {
+                    color: #bdc3c7;
+                }
+                
+                .dark-theme select {
+                    background: #34495e;
+                    color: #f0f0f0;
+                    border-color: #4a6572;
+                }
+                
+                .dark-theme .version-info {
+                    background: #2c3e50;
+                    color: #bdc3c7;
+                }
+                
+                .dark-theme .info-item {
+                    background: #34495e;
+                }
+                
+                .dark-theme .info-value {
+                    color: #1abc9c;
+                }
+            </style>
+        `;
+        
+        // Thêm CSS cho dark theme nếu chưa có
+        if (!document.querySelector('#dark-theme-style')) {
+            document.head.insertAdjacentHTML('beforeend', darkThemeCSS);
+        }
+    </script>
 </body>
 </html>

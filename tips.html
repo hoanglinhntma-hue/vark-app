@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gợi ý học tập VARK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS cho tips.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #1abc9c, #3498db);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(26, 188, 156, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        .navbar a {
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #2c3e50;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background: #f8f9fa;
+        }
+        
+        .navbar a:hover {
+            background: #e9ecef;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .navbar a.active {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            gap: 40px;
+        }
+        
+        /* Style Navigation */
+        .style-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .style-nav button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .style-nav button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+        
+        .style-nav button.active {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+        
+        .btn-visual { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .btn-aural { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .btn-readwrite { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .btn-kinesthetic { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .btn-all { background: linear-gradient(135deg, #95a5a6, #7f8c8d); }
+        
+        /* Style Sections */
+        .style-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .style-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .style-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid;
+        }
+        
+        .style-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .style-header h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .style-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .visual .style-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .aural .style-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .readwrite .style-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .kinesthetic .style-icon { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        
+        .visual .style-header { border-bottom-color: #3498db; }
+        .aural .style-header { border-bottom-color: #9b59b6; }
+        .readwrite .style-header { border-bottom-color: #e74c3c; }
+        .kinesthetic .style-header { border-bottom-color: #2ecc71; }
+        
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .tip-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: inherit;
+            opacity: 0.3;
+        }
+        
+        .tip-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: currentColor;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .tip-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .tip-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .visual .tip-card { border-left-color: #3498db; color: #3498db; }
+        .aural .tip-card { border-left-color: #9b59b6; color: #9b59b6; }
+        .readwrite .tip-card { border-left-color: #e74c3c; color: #e74c3c; }
+        .kinesthetic .tip-card { border-left-color: #2ecc71; color: #2ecc71; }
+        
+        /* Resources Section */
+        .resources {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .resources h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .resource-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+        }
+        
+        .resource-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+        
+        .download-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            color: #16a085;
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #7f8c8d;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.05);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .navbar a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .style-nav {
+                flex-direction: column;
+            }
+            
+            .style-nav button {
+                width: 100%;
+            }
+            
+            .style-section {
+                padding: 25px;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-lightbulb"></i> Gợi ý Học Tập VARK</h1>
+            <p>Khám phá phương pháp học tập tối ưu dành riêng cho phong cách của bạn</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="quiz.html"><i class="fas fa-question-circle"></i> Làm trắc nghiệm</a>
+            <a href="history.html"><i class="fas fa-history"></i> Lịch sử</a>
+            <a href="tips.html" class="active"><i class="fas fa-lightbulb"></i> Gợi ý học tập</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Style Navigation -->
+            <div class="style-nav">
+                <button class="btn-all active" data-style="all">
+                    <i class="fas fa-layer-group"></i> Tất cả
+                </button>
+                <button class="btn-visual" data-style="visual">
+                    <i class="fas fa-eye"></i> Visual
+                </button>
+                <button class="btn-aural" data-style="aural">
+                    <i class="fas fa-assistive-listening-systems"></i> Aural
+                </button>
+                <button class="btn-readwrite" data-style="readwrite">
+                    <i class="fas fa-book"></i> Read/Write
+                </button>
+                <button class="btn-kinesthetic" data-style="kinesthetic">
+                    <i class="fas fa-hands"></i> Kinesthetic
+                </button>
+            </div>
+
+            <!-- Visual Section -->
+            <section class="style-section visual active">
+                <div class="style-header">
+                    <div class="style-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div>
+                        <h2>Visual (Hình ảnh)</h2>
+                        <p class="style-description">
+                            Bạn học tốt nhất qua hình ảnh, biểu đồ, màu sắc và không gian trực quan.
+                            Trí nhớ của bạn gắn liền với những gì bạn nhìn thấy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h3>Sử dụng Sơ đồ Tư duy</h3>
+                        <p>Tạo mindmap với hình ảnh, icon và màu sắc để kết nối các ý tưởng.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h3>Highlight thông tin quan trọng</h3>
+                        <p>Dùng bút highlight nhiều màu để đánh dấu các phần chính trong tài liệu.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h3>Xem Video giảng dạy</h3>
+                        <p>Tìm video, hoạt hình giải thích khái niệm phức tạp.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h3>Sử dụng Flashcards hình ảnh</h3>
+                        <p>Tạo thẻ học với hình ảnh minh họa ở một mặt và thông tin ở mặt kia.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <h3>Vẽ biểu đồ và đồ thị</h3>
+                        <p>Chuyển đổi số liệu thành biểu đồ trực quan để dễ hiểu.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <h3>Sử dụng bảng màu học tập</h3>
+                        <p>Phân loại thông tin bằng màu sắc (ví dụ: màu xanh cho định nghĩa, đỏ cho ví dụ).</p>
+                    </div>
+                </div>
+
+                <div class="resources">
+                    <h3><i class="fas fa-link"></i> Tài nguyên hữu ích</h3>
+                    <div class="resource-list">
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon"><i class="fas fa-video"></i></div>
+                            <span>Kho video học tập miễn phí</span>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon"><i class="fas fa-palette"></i></div>
+                            <span>Công cụ vẽ mindmap online</span>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <div class="resource-icon"><i class="fas fa-images"></i></div>
+                            <span>Thư viện hình ảnh học thuật</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aural Section -->
+            <section class="style-section aural">
+                <div class="style-header">
+                    <div class="style-icon">
+                        <i class="fas fa-assistive-listening-systems"></i>
+                    </div>
+                    <div>
+                        <h2>Aural (Thính giác)</h2>
+                        <p class="style-description">
+                            Bạn tiếp thu tốt qua âm thanh, giọng nói, thảo luận và âm nhạc.
+                            Bạn nhớ tốt những gì bạn nghe được.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h3>Ghi âm bài giảng</h3>
+                        <p>Sử dụng điện thoại ghi âm bài giảng và nghe lại khi ôn tập.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h3>Thảo luận nhóm</h3>
+                        <p>Tham gia nhóm học tập để thảo luận và giải thích cho nhau.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h3>Đọc thành tiếng</h3>
+                        <p>Đọc tài liệu thành tiếng để ghi nhớ tốt hơn.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h3>Nghe Podcast giáo dục</h3>
+                        <p>Tìm podcast về chủ đề bạn đang học trong lúc di chuyển.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <h3>Tạo bài hát ghi nhớ</h3>
+                        <p>Đặt thông tin cần nhớ thành giai điệu hoặc vần điệu.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <h3>Sử dụng text-to-speech</h3>
+                        <p>Dùng ứng dụng chuyển văn bản thành giọng nói để nghe tài liệu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Read/Write Section -->
+            <section class="style-section readwrite">
+                <div class="style-header">
+                    <div class="style-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h2>Read/Write (Đọc/Viết)</h2>
+                        <p class="style-description">
+                            Bạn học tốt qua đọc và viết. Bạn thích danh sách, ghi chép,
+                            và diễn đạt ý tưởng bằng từ ngữ.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h3>Ghi chép hệ thống</h3>
+                        <p>Tạo ghi chép chi tiết, có cấu trúc rõ ràng.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h3>Viết tóm tắt</h3>
+                        <p>Sau mỗi bài học, viết tóm tắt bằng ngôn ngữ của bạn.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h3>Làm đề cương chi tiết</h3>
+                        <p>Tạo outline với các đề mục, tiểu mục rõ ràng.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h3>Đọc nhiều nguồn</h3>
+                        <p>Tham khảo nhiều sách, tài liệu về cùng một chủ đề.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <h3>Viết lại công thức</h3>
+                        <p>Viết đi viết lại công thức, định nghĩa nhiều lần.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <h3>Tạo danh sách từ khóa</h3>
+                        <p>Liệt kê các từ khóa quan trọng và định nghĩa của chúng.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kinesthetic Section -->
+            <section class="style-section kinesthetic">
+                <div class="style-header">
+                    <div class="style-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <div>
+                        <h2>Kinesthetic (Vận động)</h2>
+                        <p class="style-description">
+                            Bạn học tốt nhất qua hành động, thực hành và trải nghiệm thực tế.
+                            Bạn cần "làm" để hiểu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <h3>Kết hợp học với vận động</h3>
+                        <p>Đi lại khi học thuộc lòng, sử dụng cử chỉ khi ghi nhớ.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <h3>Thực hành ngay sau lý thuyết</h3>
+                        <p>Áp dụng kiến thức vào bài tập thực hành ngay lập tức.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <h3>Sử dụng mô hình học tập</h3>
+                        <p>Tạo mô hình vật lý để hiểu khái niệm trừu tượng.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <h3>Tham gia thí nghiệm</h3>
+                        <p>Thực hiện thí nghiệm, dự án thực tế liên quan đến bài học.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <h3>Học qua trò chơi</h3>
+                        <p>Sử dụng game, câu đố để học kiến thức mới.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <h3>Thực địa và quan sát</h3>
+                        <p>Đến nơi có liên quan để học (bảo tàng, nhà máy, tự nhiên).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Guide -->
+            <div class="download-section">
+                <h3><i class="fas fa-file-pdf"></i> Tải Hướng dẫn Học tập Đầy đủ</h3>
+                <p>Tải về bản PDF chi tiết với 50+ mẹo học tập cho cả 4 phong cách VARK</p>
+                <button class="btn-download" onclick="downloadGuide()">
+                    <i class="fas fa-download"></i> Tải Hướng dẫn (PDF)
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>VARK Learning Styles Guide</strong></p>
+            <p>Ứng dụng giúp bạn khám phá và phát triển phương pháp học tập tối ưu</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="quiz.html">Trắc nghiệm</a>
+                <a href="history.html">Lịch sử</a>
+                <a href="tips.html">Gợi ý học tập</a>
+                <a href="settings.html">Cài đặt</a>
+            </div>
+            
+            <p class="copyright">© 2024 VARK Learning App. Tất cả các gợi ý dựa trên nghiên cứu khoa học.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Xử lý chuyển đổi giữa các section
+        document.addEventListener('DOMContentLoaded', function() {
+            const styleButtons = document.querySelectorAll('.style-nav button');
+            const styleSections = document.querySelectorAll('.style-section');
+            
+            // Hiển thị tất cả sections khi trang tải
+            showAllSections();
+            
+            styleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const style = this.dataset.style;
+                    
+                    // Cập nhật active button
+                    styleButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (style === 'all') {
+                        showAllSections();
+                    } else {
+                        // Ẩn tất cả sections
+                        styleSections.forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        
+                        // Hiển thị section được chọn
+                        document.querySelector(`.${style}`).classList.add('active');
+                    }
+                });
+            });
+            
+            function showAllSections() {
+                styleSections.forEach(section => {
+                    section.classList.add('active');
+                });
+            }
+            
+            // Kiểm tra nếu có kết quả trắc nghiệm, highlight phong cách chính
+            checkUserStyle();
+        });
+        
+        function checkUserStyle() {
+            // Lấy kết quả mới nhất từ storage
+            if (typeof Storage !== 'undefined') {
+                const results = Storage.getResults();
+                if (results.length > 0) {
+                    const latestResult = results[0];
+                    const dominantStyle = latestResult.dominant && latestResult.dominant[0];
+                    
+                    if (dominantStyle) {
+                        const styleMap = {
+                            'V': 'visual',
+                            'A': 'aural',
+                            'R': 'readwrite',
+                            'K': 'kinesthetic'
+                        };
+                        
+                        const styleClass = styleMap[dominantStyle];
+                        if (styleClass) {
+                            // Thêm indicator cho phong cách chính của người dùng
+                            const styleButton = document.querySelector(`.btn-${styleClass}`);
+                            if (styleButton) {
+                                styleButton.innerHTML += ' <span class="user-style">(Của bạn)</span>';
+                                styleButton.style.position = 'relative';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        function downloadGuide() {
+            // Tạo nội dung PDF giả lập
+            const guideContent = `
+                HƯỚNG DẪN HỌC TẬP VARK
+                ========================
+                
+                Visual (Hình ảnh):
+                1. Sử dụng sơ đồ tư duy
+                2. Highlight thông tin quan trọng
+                3. Xem video giảng dạy
+                ...
+                
+                Aural (Thính giác):
+                1. Ghi âm bài giảng
+                2. Thảo luận nhóm
+                3. Đọc thành tiếng
+                ...
+                
+                Tải toàn bộ hướng dẫn tại: vark-learning.com/guide
+            `;
+            
+            // Tạo file Blob và download
+            const blob = new Blob([guideContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'huong-dan-hoc-tap-vark.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Đang tải hướng dẫn học tập...');
+        }
+        
+        // Thêm CSS cho indicator
+        const style = document.createElement('style');
+        style.textContent = `
+            .user-style {
+                font-size: 0.8rem;
+                background: #f1c40f;
+                color: #2c3e50;
+                padding: 2px 8px;
+                border-radius: 10px;
+                margin-left: 10px;
+                animation: pulse 2s infinite;
+            }
+            
+            @keyframes pulse {
+                0% { opacity: 0.7; }
+                50% { opacity: 1; }
+                100% { opacity: 0.7; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    
+    <!-- Liên kết với storage.js nếu có kết quả -->
+    <script src="js/storage.js"></script>
+</body>
+</html>

@@ -1,13 +1,9 @@
 // Khởi tạo ứng dụng
 document.addEventListener('DOMContentLoaded', function() {
-    // Hiển thị thống kê trên trang chủ
     updateStats();
-    
-    // Hiển thị kết quả gần nhất
     showLatestResult();
 });
 
-// Cập nhật thống kê
 function updateStats() {
     const results = Storage.getResults();
     const quizCount = document.getElementById('quizCount');
@@ -26,7 +22,6 @@ function updateStats() {
     }
 }
 
-// Hiển thị kết quả gần nhất
 function showLatestResult() {
     const lastResultDiv = document.getElementById('lastResult');
     if (!lastResultDiv) return;
@@ -53,13 +48,12 @@ function showLatestResult() {
     }
 }
 
-// Chuyển đổi mã phong cách thành tên đầy đủ
 function getStyleName(code) {
     const styles = {
-        'V': 'Visual (Hình ảnh)',
-        'A': 'Aural (Thính giác)',
-        'R': 'Read/Write (Đọc/Viết)',
-        'K': 'Kinesthetic (Vận động)'
+        'V': 'Visual',
+        'A': 'Aural',
+        'R': 'Read/Write',
+        'K': 'Kinesthetic'
     };
     return styles[code] || code;
 }

@@ -1,4 +1,4 @@
-// Results Page
+// js/results.js
 class ResultsPage {
     constructor() {
         this.result = null;
@@ -8,21 +8,20 @@ class ResultsPage {
     }
     
     init() {
-        // Lấy ID từ URL
         const urlParams = new URLSearchParams(window.location.search);
         const resultId = urlParams.get('id');
         
         if (resultId) {
             this.loadResult(resultId);
         } else {
-            // Nếu không có ID, lấy kết quả gần nhất
             this.loadLatestResult();
         }
+        
+        this.setupEventListeners();
     }
     
     loadResult(resultId) {
-        const results = Storage.getResults();
-        this.result = results.find(r => r.id == resultId);
+        this.result = Storage.getResultById(resultId);
         
         if (this.result) {
             this.displayResult();
@@ -42,23 +41,31 @@ class ResultsPage {
     }
     
     displayResult() {
-        // Cập nhật ngày
         const dateElement = document.getElementById('resultDate');
         if (dateElement) {
             dateElement.textContent = `Kết quả ngày ${this.result.date || 'Không xác định'}`;
         }
         
-        // Hiển thị phong cách chính
+        this.displayResultSummary();
         this.displayDominantStyles();
-        
-        // Hiển thị điểm số chi tiết
         this.displayDetailedScores();
-        
-        // Tạo biểu đồ
         this.createChart();
-        
-        // Hiển thị lời khuyên
         this.displayAdvice();
+        this.displayAnswerDetails(); // Mới: hiển thị đáp án chi tiết
+    }
+    
+    displayResultSummary() {
+        const totalQuestions = this.result.totalQuestions || 16;
+        const answered = this.result.answeredCount || Object.keys(this.result.answers || {}).length;
+        const percentage = Math.round((answered / totalQuestions) * 100);
+        
+        const summaryElement = document.getElementById('resultSummary');
+        if (summaryElement) {
+            summaryElement.innerHTML = `
+                <p>Đã hoàn thành: <strong>${answered}/${totalQuestions}</strong> câu (${percentage}%)</p>
+                <p>Thời gian: ${new Date(this.result.timestamp).toLocaleString('vi-VN')}</p>
+            `;
+        }
     }
     
     displayDominantStyles() {
@@ -67,11 +74,9 @@ class ResultsPage {
         
         if (!container || !description) return;
         
-        // Xóa nội dung cũ
         container.innerHTML = '';
         description.innerHTML = '';
         
-        // Thêm badge cho mỗi phong cách chính
         this.result.dominant.forEach(style => {
             const badge = document.createElement('span');
             badge.className = `style-badge badge-${style}`;
@@ -79,10 +84,9 @@ class ResultsPage {
             container.appendChild(badge);
         });
         
-        // Thêm mô tả
         if (this.result.dominant.length === 1) {
             description.innerHTML = `
-                <p>Bạn có xu hướng học tập chủ yếu qua <strong>${this.getStyleFullName(this.result.dominant[0])}</strong>.</p>
+                <p>Bạn là người học chủ yếu qua phong cách <strong>${this.getStyleFullName(this.result.dominant[0])}</strong>.</p>
                 <p>Điều này có nghĩa bạn tiếp thu kiến thức tốt nhất qua phương pháp phù hợp với phong cách này.</p>
             `;
         } else {
@@ -97,16 +101,13 @@ class ResultsPage {
         const container = document.getElementById('scoresDetail');
         if (!container) return;
         
-        // Tìm điểm cao nhất để tính phần trăm
-        const maxScore = Math.max(...Object.values(this.result.scores));
-        
-        // Tạo HTML cho từng loại điểm
+        const totalQuestions = this.result.totalQuestions || 16;
         let html = '';
         const styles = ['V', 'A', 'R', 'K'];
         
         styles.forEach(style => {
             const score = this.result.scores[style] || 0;
-            const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
+            const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
             
             html += `
                 <div class="score-item">
@@ -119,7 +120,7 @@ class ResultsPage {
                     </div>
                     
                     <div class="score-value">
-                        <strong>${score}</strong> điểm
+                        <strong>${score}/${totalQuestions}</strong> (${percentage}%)
                     </div>
                 </div>
             `;
@@ -132,11 +133,11 @@ class ResultsPage {
         const ctx = document.getElementById('varkChart');
         if (!ctx) return;
         
-        // Nếu đã có biểu đồ cũ, hủy nó
         if (this.chart) {
             this.chart.destroy();
         }
         
+        const totalQuestions = this.result.totalQuestions || 16;
         const data = {
             labels: ['Visual', 'Aural', 'Read/Write', 'Kinesthetic'],
             datasets: [{
@@ -170,15 +171,22 @@ class ResultsPage {
                 scales: {
                     r: {
                         beginAtZero: true,
-                        max: Math.max(...Object.values(this.result.scores)) + 1,
+                        max: totalQuestions,
                         ticks: {
-                            stepSize: 1
+                            stepSize: Math.max(2, Math.ceil(totalQuestions / 8))
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw}`;
+                            }
+                        }
                     }
                 }
             }
@@ -236,7 +244,7 @@ class ResultsPage {
         
         let html = '';
         
-        // Hiển thị lời khuyên cho phong cách chính trước
+        // Hiển thị chi tiết cho phong cách chính
         this.result.dominant.forEach(style => {
             if (advice[style]) {
                 html += `
@@ -250,18 +258,56 @@ class ResultsPage {
             }
         });
         
-        // Hiển thị lời khuyên cho các phong cách khác
+        // Gợi ý cho các phong cách khác
         const allStyles = ['V', 'A', 'R', 'K'];
-        allStyles.forEach(style => {
-            if (!this.result.dominant.includes(style) && advice[style]) {
-                html += `
-                    <div class="advice-card">
-                        <h4>${advice[style].title}</h4>
-                        <p>Bạn có thể kết hợp: ${advice[style].tips.slice(0, 3).join(', ')}...</p>
-                    </div>
-                `;
-            }
-        });
+        const otherStyles = allStyles.filter(style => !this.result.dominant.includes(style));
+        
+        if (otherStyles.length > 0) {
+            html += `<div class="advice-section">
+                <h4><i class="fas fa-lightbulb"></i> Gợi ý kết hợp thêm</h4>
+                <p>Bạn cũng có thể thử:</p>`;
+            
+            otherStyles.forEach(style => {
+                if (advice[style]) {
+                    html += `
+                        <div class="advice-tip">
+                            <strong>${this.getStyleFullName(style)}:</strong>
+                            ${advice[style].tips.slice(0, 2).join(', ')}
+                        </div>
+                    `;
+                }
+            });
+            
+            html += `</div>`;
+        }
+        
+        container.innerHTML = html;
+    }
+    
+    // MỚI: Hiển thị chi tiết đáp án đã chọn
+    displayAnswerDetails() {
+        const container = document.getElementById('answerDetails');
+        if (!container || !this.result.answers || !this.result.varkMapping) return;
+        
+        const totalQuestions = this.result.totalQuestions || 16;
+        let html = '<h4><i class="fas fa-list-check"></i> Chi tiết đáp án</h4>';
+        
+        for (let i = 1; i <= totalQuestions; i++) {
+            const answer = this.result.answers[i];
+            if (!answer) continue;
+            
+            const varkType = this.result.varkMapping[i]?.[answer] || '?';
+            const letter = answer;
+            const varkName = this.getStyleFullName(varkType);
+            
+            html += `
+                <div class="answer-detail">
+                    <span class="answer-q">Câu ${i}:</span>
+                    <span class="answer-letter">${letter}</span>
+                    <span class="answer-vark">→ ${varkName}</span>
+                </div>
+            `;
+        }
         
         container.innerHTML = html;
     }
@@ -276,6 +322,54 @@ class ResultsPage {
         return styles[code] || code;
     }
     
+    setupEventListeners() {
+        // Nút chia sẻ
+        const shareBtn = document.getElementById('shareBtn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => this.shareResult());
+        }
+        
+        // Nút làm lại
+        const retakeBtn = document.getElementById('retakeBtn');
+        if (retakeBtn) {
+            retakeBtn.addEventListener('click', () => {
+                window.location.href = 'quiz.html';
+            });
+        }
+        
+        // Nút xem lịch sử
+        const historyBtn = document.getElementById('historyBtn');
+        if (historyBtn) {
+            historyBtn.addEventListener('click', () => {
+                window.location.href = 'history.html';
+            });
+        }
+    }
+    
+    shareResult() {
+        let shareText = `Kết quả trắc nghiệm VARK của tôi:\n`;
+        
+        this.result.dominant.forEach(style => {
+            shareText += `🏆 ${this.getStyleFullName(style)}\n`;
+        });
+        
+        shareText += `\nTìm hiểu phong cách học tập của bạn tại: ${window.location.origin}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'Kết quả trắc nghiệm VARK',
+                text: shareText,
+                url: window.location.href
+            });
+        } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert('Đã sao chép kết quả vào clipboard!');
+            });
+        } else {
+            prompt('Sao chép kết quả:', shareText);
+        }
+    }
+    
     showError() {
         const container = document.querySelector('.results-container');
         if (container) {
@@ -284,6 +378,7 @@ class ResultsPage {
                     <h2><i class="fas fa-exclamation-triangle"></i> Không tìm thấy kết quả</h2>
                     <p>Không thể tìm thấy kết quả với ID đã cho.</p>
                     <a href="index.html" class="btn-primary">Về trang chủ</a>
+                    <a href="quiz.html" class="btn-secondary">Làm trắc nghiệm</a>
                 </div>
             `;
         }
@@ -297,13 +392,19 @@ class ResultsPage {
                     <h2><i class="fas fa-clipboard-list"></i> Chưa có kết quả nào</h2>
                     <p>Bạn chưa hoàn thành bài trắc nghiệm nào.</p>
                     <a href="quiz.html" class="btn-primary">Làm trắc nghiệm ngay</a>
+                    <a href="index.html" class="btn-secondary">Về trang chủ</a>
                 </div>
             `;
         }
     }
 }
 
-// Khởi tạo trang kết quả
+// Khởi tạo khi trang tải xong
 document.addEventListener('DOMContentLoaded', () => {
+    // Kiểm tra xem Chart.js đã được tải chưa
+    if (typeof Chart === 'undefined') {
+        console.warn('Chart.js chưa được tải. Vui lòng thêm thẻ script trong HTML.');
+    }
+    
     new ResultsPage();
 });

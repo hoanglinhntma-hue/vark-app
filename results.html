@@ -18,6 +18,10 @@
         .result-header {
             text-align: center;
             margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .result-summary {
@@ -27,27 +31,39 @@
             margin-bottom: 40px;
         }
         
+        @media (max-width: 768px) {
+            .result-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .chart-container {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .dominant-styles {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         .style-badge {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
+            padding: 12px 25px;
+            margin: 8px 5px;
             border-radius: 25px;
             color: white;
             font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .badge-V { background: linear-gradient(135deg, #3498db, #2980b9); }
@@ -57,7 +73,7 @@
         
         .detailed-scores {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             margin-bottom: 30px;
@@ -75,6 +91,10 @@
             border-bottom: none;
         }
         
+        .score-label {
+            min-width: 180px;
+        }
+        
         .score-bar-container {
             flex: 1;
             margin: 0 20px;
@@ -82,17 +102,61 @@
             background: #ecf0f1;
             border-radius: 10px;
             overflow: hidden;
+            position: relative;
         }
         
         .score-bar {
             height: 100%;
             border-radius: 10px;
+            transition: width 1s ease-out;
         }
         
         .bar-V { background: #3498db; }
         .bar-A { background: #9b59b6; }
         .bar-R { background: #e74c3c; }
         .bar-K { background: #2ecc71; }
+        
+        .answer-details {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .answer-detail {
+            display: flex;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .answer-q {
+            font-weight: bold;
+            min-width: 80px;
+        }
+        
+        .answer-letter {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .answer-vark {
+            color: #2c3e50;
+            font-weight: 500;
+        }
         
         .advice-section {
             background: white;
@@ -115,17 +179,109 @@
         .advice-R { border-left-color: #e74c3c; }
         .advice-K { border-left-color: #2ecc71; }
         
+        .advice-card h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .advice-card ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        
+        .advice-card li {
+            margin-bottom: 8px;
+        }
+        
+        .advice-section {
+            margin-bottom: 30px;
+        }
+        
+        .advice-tip {
+            background: #e8f4fc;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+        
         .action-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
         
-        @media (max-width: 768px) {
-            .result-summary {
-                grid-template-columns: 1fr;
-            }
+        .btn-primary, .btn-secondary {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: #1abc9c;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #16a085;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-share {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-share:hover {
+            background: #2980b9;
+        }
+        
+        .error-message, .no-result-message {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .error-message h2 {
+            color: #e74c3c;
+        }
+        
+        .no-result-message h2 {
+            color: #3498db;
+        }
+        
+        .error-message .btn-primary,
+        .no-result-message .btn-primary {
+            margin-top: 20px;
+        }
+        
+        .chart-loading {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 50px;
         }
     </style>
 </head>
@@ -145,14 +301,19 @@
         </nav>
 
         <main class="results-container">
+            <!-- Header kết quả -->
             <div class="result-header">
                 <h2 id="resultDate">Kết quả ngày ...</h2>
                 <p id="resultSummary">Đang tải kết quả...</p>
             </div>
             
+            <!-- Phần tóm tắt chính: Biểu đồ + Phong cách chính -->
             <div class="result-summary">
                 <div class="chart-container">
                     <canvas id="varkChart"></canvas>
+                    <div id="chartLoading" class="chart-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Đang tải biểu đồ...
+                    </div>
                 </div>
                 
                 <div class="dominant-styles">
@@ -167,6 +328,7 @@
                 </div>
             </div>
             
+            <!-- Điểm số chi tiết -->
             <div class="detailed-scores">
                 <h3><i class="fas fa-list-ol"></i> Điểm số chi tiết</h3>
                 <div id="scoresDetail">
@@ -174,6 +336,15 @@
                 </div>
             </div>
             
+            <!-- Chi tiết đáp án (MỚI) -->
+            <div class="answer-details">
+                <h3><i class="fas fa-check-circle"></i> Chi tiết đáp án của bạn</h3>
+                <div id="answerDetails">
+                    <!-- Chi tiết A/B/C/D → VARK sẽ được thêm ở đây -->
+                </div>
+            </div>
+            
+            <!-- Lời khuyên học tập -->
             <div class="advice-section">
                 <h3><i class="fas fa-lightbulb"></i> Lời khuyên học tập</h3>
                 <div id="adviceContainer">
@@ -181,12 +352,19 @@
                 </div>
             </div>
             
+            <!-- Các nút hành động -->
             <div class="action-buttons">
-                <a href="quiz.html" class="btn-primary">
+                <button class="btn-primary" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Chia sẻ kết quả
+                </button>
+                <button class="btn-primary" id="retakeBtn">
                     <i class="fas fa-redo"></i> Làm lại trắc nghiệm
-                </a>
+                </button>
                 <a href="tips.html" class="btn-secondary">
                     <i class="fas fa-book-open"></i> Xem gợi ý chi tiết
+                </a>
+                <a href="history.html" class="btn-secondary">
+                    <i class="fas fa-history"></i> Xem lịch sử
                 </a>
                 <a href="index.html" class="btn-secondary">
                     <i class="fas fa-home"></i> Về trang chủ
@@ -196,10 +374,22 @@
 
         <footer class="footer">
             <p>Kết quả này giúp bạn hiểu rõ hơn về cách tiếp thu kiến thức hiệu quả nhất</p>
+            <p><small>VARK: Visual, Aural, Read/Write, Kinesthetic</small></p>
         </footer>
     </div>
 
     <script src="js/storage.js"></script>
     <script src="js/results.js"></script>
+    
+    <script>
+        // Kiểm tra Chart.js đã tải xong chưa
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Chart === 'undefined') {
+                document.getElementById('chartLoading').style.display = 'block';
+                document.getElementById('varkChart').style.display = 'none';
+                console.error('Chart.js chưa được tải. Vui lòng kiểm tra kết nối mạng.');
+            }
+        });
+    </script>
 </body>
 </html>

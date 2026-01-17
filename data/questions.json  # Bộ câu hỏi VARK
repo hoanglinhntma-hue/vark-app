@@ -1,62 +1,162 @@
 [
-    {
-        "id": 1,
-        "text": "Khi học về một loài động vật mới, bạn thích:",
-        "options": [
-            {"text": "Xem hình ảnh hoặc video về nó", "type": "V"},
-            {"text": "Nghe thuyết trình hoặc âm thanh của nó", "type": "A"},
-            {"text": "Đọc mô tả và ghi chép về nó", "type": "R"},
-            {"text": "Đến vườn thú để quan sát trực tiếp", "type": "K"}
-        ]
-    },
-    {
-        "id": 2,
-        "text": "Khi lắp ráp đồ nội thất, bạn thường:",
-        "options": [
-            {"text": "Xem kỹ hình ảnh hướng dẫn", "type": "V"},
-            {"text": "Gọi điện hỏi người khác", "type": "A"},
-            {"text": "Đọc kỹ hướng dẫn sử dụng", "type": "R"},
-            {"text": "Thử lắp trực tiếp, sai thì sửa", "type": "K"}
-        ]
-    },
-    {
-        "id": 3,
-        "text": "Khi học từ vựng ngoại ngữ, bạn thích:",
-        "options": [
-            {"text": "Sử dụng thẻ học với hình ảnh", "type": "V"},
-            {"text": "Nghe phát âm và lặp lại", "type": "A"},
-            {"text": "Viết đi viết lại nhiều lần", "type": "R"},
-            {"text": "Sử dụng trong tình huống thực tế", "type": "K"}
-        ]
-    },
-    {
-        "id": 4,
-        "text": "Trong một buổi hội thảo, bạn thường:",
-        "options": [
-            {"text": "Tập trung vào slide và biểu đồ", "type": "V"},
-            {"text": "Lắng nghe diễn giả nói", "type": "A"},
-            {"text": "Ghi chép chi tiết", "type": "R"},
-            {"text": "Tham gia thực hành nếu có", "type": "K"}
-        ]
-    },
-    {
-        "id": 5,
-        "text": "Khi ghi nhớ số điện thoại, bạn:",
-        "options": [
-            {"text": "Hình dung con số trong đầu", "type": "V"},
-            {"text": "Đọc thành tiếng nhiều lần", "type": "A"},
-            {"text": "Viết ra giấy nhiều lần", "type": "R"},
-            {"text": "Bấm số trên điện thoại nhiều lần", "type": "K"}
-        ]
-    },
-    {
-        "id": 6,
-        "text": "Khi giải thích đường đi cho người khác, bạn:",
-        "options": [
-            {"text": "Vẽ bản đồ hoặc sơ đồ", "type": "V"},
-            {"text": "Giải thích bằng lời chi tiết", "type": "A"},
-            {"text": "Viết ra tên đường và số nhà", "type": "R"},
-            {"text": "Dẫn họ đi một đoạn", "type": "K"}
-        ]
-    }
+  {
+    "id": 1,
+    "text": "Khi học về một loài động vật mới, bạn thích:",
+    "options": [
+      { "text": "Xem hình ảnh hoặc video về nó", "type": "A" },
+      { "text": "Nghe thuyết trình hoặc âm thanh của nó", "type": "B" },
+      { "text": "Đọc mô tả và ghi chép về nó", "type": "C" },
+      { "text": "Đến vườn thú để quan sát trực tiếp", "type": "D" }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "Khi lắp ráp đồ nội thất, bạn thường:",
+    "options": [
+      { "text": "Thử lắp trực tiếp, sai thì sửa", "type": "A" },
+      { "text": "Đọc kỹ hướng dẫn sử dụng", "type": "B" },
+      { "text": "Xem kỹ hình ảnh hướng dẫn", "type": "C" },
+      { "text": "Gọi điện hỏi người khác", "type": "D" }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "Khi học từ vựng ngoại ngữ, bạn thích:",
+    "options": [
+      { "text": "Nghe phát âm và lặp lại", "type": "A" },
+      { "text": "Sử dụng trong tình huống thực tế", "type": "B" },
+      { "text": "Viết đi viết lại nhiều lần", "type": "C" },
+      { "text": "Sử dụng thẻ học với hình ảnh", "type": "D" }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "Trong một buổi hội thảo, bạn thường:",
+    "options": [
+      { "text": "Tập trung vào slide và biểu đồ", "type": "A" },
+      { "text": "Tham gia thực hành nếu có", "type": "B" },
+      { "text": "Lắng nghe diễn giả nói", "type": "C" },
+      { "text": "Ghi chép chi tiết", "type": "D" }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "Khi ghi nhớ số điện thoại, bạn:",
+    "options": [
+      { "text": "Đọc thành tiếng nhiều lần", "type": "A" },
+      { "text": "Hình dung con số trong đầu", "type": "B" },
+      { "text": "Bấm số trên điện thoại nhiều lần", "type": "C" },
+      { "text": "Viết ra giấy nhiều lần", "type": "D" }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "Khi giải thích đường đi cho người khác, bạn:",
+    "options": [
+      { "text": "Giải thích bằng lời chi tiết", "type": "A" },
+      { "text": "Dẫn họ đi một đoạn", "type": "B" },
+      { "text": "Vẽ bản đồ hoặc sơ đồ", "type": "C" },
+      { "text": "Viết ra tên đường và số nhà", "type": "D" }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "Khi cần học một kỹ năng mới (như nấu ăn), bạn:",
+    "options": [
+      { "text": "Xem video hướng dẫn", "type": "A" },
+      { "text": "Đọc sách dạy nấu ăn", "type": "B" },
+      { "text": "Nghe ai đó giải thích từng bước", "type": "C" },
+      { "text": "Vào bếp thực hành ngay", "type": "D" }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "Khi ôn tập cho kỳ thi, bạn thường:",
+    "options": [
+      { "text": "Làm đề thi thử nhiều lần", "type": "A" },
+      { "text": "Nghe lại bài giảng đã ghi âm", "type": "B" },
+      { "text": "Vẽ sơ đồ tư duy", "type": "C" },
+      { "text": "Viết tóm tắt kiến thức ra giấy", "type": "D" }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "Khi mua sắm đồ mới, bạn quyết định dựa vào:",
+    "options": [
+      { "text": "Ấn tượng đầu tiên khi nhìn thấy", "type": "A" },
+      { "text": "Lời tư vấn của người bán hoặc bạn bè", "type": "B" },
+      { "text": "Thông số kỹ thuật và bài đánh giá", "type": "C" },
+      { "text": "Dùng thử sản phẩm nếu có thể", "type": "D" }
+    ]
+  },
+  {
+    "id": 10,
+    "text": "Trong giờ học, nếu không hiểu bài, bạn sẽ:",
+    "options": [
+      { "text": "Xem lại ví dụ trong sách giáo khoa", "type": "A" },
+      { "text": "Nhờ bạn hoặc thầy cô giải thích lại", "type": "B" },
+      { "text": "Đọc thêm tài liệu khác", "type": "C" },
+      { "text": "Tự làm thí nghiệm/thực hành liên quan", "type": "D" }
+    ]
+  },
+  {
+    "id": 11,
+    "text": "Khi tham gia một trò chơi mới, bạn học cách chơi bằng cách:",
+    "options": [
+      { "text": "Quan sát người khác chơi trước", "type": "A" },
+      { "text": "Nghe hướng dẫn luật chơi", "type": "B" },
+      { "text": "Đọc bảng hướng dẫn luật chơi", "type": "C" },
+      { "text": "Nhảy vào chơi thử ngay", "type": "D" }
+    ]
+  },
+  {
+    "id": 12,
+    "text": "Khi cần nhớ lời một bài hát, bạn:",
+    "options": [
+      { "text": "Nghe đi nghe lại bài hát đó", "type": "A" },
+      { "text": "Hát theo nhiều lần", "type": "B" },
+      { "text": "Viết lời bài hát ra giấy", "type": "C" },
+      { "text": "Vừa nghe vừa làm động tác theo nhạc", "type": "D" }
+    ]
+  },
+  {
+    "id": 13,
+    "text": "Khi thuyết trình, bạn chuẩn bị bằng cách:",
+    "options": [
+      { "text": "Luyện nói trước gương hoặc thu âm", "type": "A" },
+      { "text": "Làm slide trực quan, nhiều hình ảnh", "type": "B" },
+      { "text": "Viết kịch bản chi tiết ra giấy", "type": "C" },
+      { "text": "Đi lại, dùng cử chỉ khi tập nói", "type": "D" }
+    ]
+  },
+  {
+    "id": 14,
+    "text": "Khi gặp một thiết bị điện tử mới, bạn:",
+    "options": [
+      { "text": "Mở hộp và dùng thử ngay", "type": "A" },
+      { "text": "Xem hình minh họa trong sách hướng dẫn", "type": "B" },
+      { "text": "Hỏi người đã dùng qua", "type": "C" },
+      { "text": "Đọc kỹ hướng dẫn sử dụng trước", "type": "D" }
+    ]
+  },
+  {
+    "id": 15,
+    "text": "Khi học một vũ điệu mới, bạn thích:",
+    "options": [
+      { "text": "Xem video hướng dẫn nhiều lần", "type": "A" },
+      { "text": "Nghe nhạc và cảm nhận nhịp điệu", "type": "B" },
+      { "text": "Đọc mô tả các động tác", "type": "C" },
+      { "text": "Nhảy thử theo cảm nhận ngay", "type": "D" }
+    ]
+  },
+  {
+    "id": 16,
+    "text": "Khi muốn hiểu một khái niệm trừu tượng, bạn:",
+    "options": [
+      { "text": "Vẽ sơ đồ, biểu đồ liên quan", "type": "A" },
+      { "text": "Nghe podcast hoặc bài giảng về nó", "type": "B" },
+      { "text": "Đọc nhiều nguồn tài liệu khác nhau", "type": "C" },
+      { "text": "Liên hệ với tình huống thực tế cụ thể", "type": "D" }
+    ]
+  }
 ]

@@ -69,27 +69,24 @@
             background: #e8f6f3;
         }
         
-        .option-icon {
+        .option-letter {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #3498db;
             color: white;
             font-weight: bold;
+            font-size: 1.1rem;
         }
-        
-        .icon-V { background: #3498db; }
-        .icon-A { background: #9b59b6; }
-        .icon-R { background: #e74c3c; }
-        .icon-K { background: #2ecc71; }
         
         .progress-bar {
             height: 10px;
             background: #ecf0f1;
             border-radius: 5px;
-            margin: 30px 0;
+            margin: 30px 0 20px;
             overflow: hidden;
         }
         
@@ -100,10 +97,36 @@
             transition: width 0.5s;
         }
         
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+        
         .navigation {
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
+        }
+        
+        .btn-primary {
+            background: #1abc9c;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #16a085;
         }
         
         .btn-secondary {
@@ -124,9 +147,46 @@
             background: #7f8c8d;
         }
         
+        #submitBtn {
+            background: #e74c3c;
+        }
+        
+        #submitBtn:hover {
+            background: #c0392b;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 15px;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .option {
+                padding: 12px 15px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -134,7 +194,7 @@
     <div class="container">
         <header class="header">
             <h1><i class="fas fa-question-circle"></i> Trắc nghiệm VARK</h1>
-            <p>Hãy chọn câu trả lời phù hợp nhất với bạn</p>
+            <p>Hãy chọn câu trả lời phù hợp nhất với bạn (16 câu hỏi)</p>
         </header>
 
         <nav class="navbar">
@@ -146,6 +206,12 @@
         </nav>
 
         <main class="quiz-container">
+            <!-- Thông tin tiến độ -->
+            <div class="quiz-info">
+                <div id="currentQuestion">Câu: 1/16</div>
+                <div id="answeredCounter">Đã trả lời: 0/16</div>
+            </div>
+            
             <!-- Thanh tiến độ -->
             <div class="progress-bar">
                 <div class="progress" id="progressBar"></div>
@@ -155,23 +221,26 @@
             <div id="questionsContainer"></div>
             
             <!-- Nút điều hướng -->
-            <div class="navigation" id="navigation">
+            <div class="navigation">
                 <button class="btn-secondary" id="prevBtn">
                     <i class="fas fa-arrow-left"></i> Câu trước
                 </button>
                 
-                <button class="btn-primary" id="nextBtn">
-                    Câu tiếp theo <i class="fas fa-arrow-right"></i>
-                </button>
-                
-                <button class="btn-primary" id="submitBtn" style="display: none;">
-                    <i class="fas fa-paper-plane"></i> Xem kết quả
-                </button>
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn-primary" id="nextBtn">
+                        Câu tiếp theo <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <button class="btn-primary" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Xem kết quả
+                    </button>
+                </div>
             </div>
         </main>
 
         <footer class="footer">
             <p>Trắc nghiệm VARK - Mỗi câu hỏi giúp hiểu rõ hơn về cách bạn học tốt nhất</p>
+            <p><small>Chọn đáp án A, B, C hoặc D phù hợp nhất với bạn.</small></p>
         </footer>
     </div>
 
